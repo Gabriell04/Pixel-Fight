@@ -7,8 +7,6 @@ export default function createGame(){
             height: 10
         }
     }
-
-
     //Players
     function addPlayer(command){
         const playerId = command.playerId
@@ -26,7 +24,6 @@ export default function createGame(){
         delete state.players[playerId]
     }
     //
-
     //Fruit
     function addFruit(command){
         const fruitId = command.fruitId
@@ -44,8 +41,6 @@ export default function createGame(){
         delete state.fruits[fruitId]
     }
     //
-
-
     function movePlayer(command) {
         console.log(`Moving ${command.playerId} with ${command.keyPressed}`)
 
@@ -86,7 +81,6 @@ export default function createGame(){
             checkForFruitCollision(playerId)
         }
     }
-
     //FruitCollision
     function checkForFruitCollision(playerId) {
         const player = state.players[playerId]
@@ -102,7 +96,6 @@ export default function createGame(){
         }
     }
     //
-
     return{
         addPlayer,
         removePlayer,
