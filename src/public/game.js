@@ -11,7 +11,7 @@ export default function createGame() {
     const observers = []
 
     function start() {
-        const frequency = 2000
+        const frequency = 2000 //fruit time
 
         setInterval(addFruit, frequency)
     }
@@ -96,7 +96,7 @@ export default function createGame() {
                 if (player.y - 1 >= 0) {
                     player.y = player.y - 1
                 }
-            },
+            },     
             ArrowRight(player) {
                 if (player.x + 1 < state.screen.width) {
                     player.x = player.x + 1
