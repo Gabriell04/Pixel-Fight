@@ -2,22 +2,30 @@
     <head>
         <meta charset="utf-8">
         <title>Pixel Fight</title>
-
         <style>
             #screen {
-                border: 10px solid #CCC;
+                background: #101010;
+                box-shadow: 2px 3px 4px 5px rgba(20,20,20,0.4);
                 image-rendering: pixelated;
                 image-rendering: crisp-edges;
                 image-rendering: -moz-crisp-edges;
-                width: 600px;
-                height: 600px;
+                width: 800px;
+                height: 800px;
+                margin: 20px 550px;
             }
+            #h1{
+                margin: 15px 850px;
+                font-family: monaco,Consolas,Lucida Console,monospace; 
+            }
+
         </style>
         <script src="/socket.io/socket.io.js"></script>
     </head>
-    <body>
-        <canvas id="screen" width="50" height="50"></canvas>
+    <h1 id="h1">Pixel Fight</h1>
+    <body style="background-color:grey;"></body>
 
+        <canvas id="screen" width="50" height="50"></canvas>
+    
         <script type="module">
             import createGame from './game.js'
             import createKeyboardListener from './keyboard-listener.js'
@@ -48,16 +56,19 @@
                 })
             })
 
+            //addPlayer
             socket.on('add-player', (command) => {
                 console.log(`Receiving ${command.type} -> ${command.playerId}`)
                 game.addPlayer(command)
             })
 
+            //removePlayer
             socket.on('remove-player', (command) => {
                 console.log(`Receiving ${command.type} -> ${command.playerId}`)
                 game.removePlayer(command)
             })
 
+            //movePlayer
             socket.on('move-player', (command) => {
                 console.log(`Receiving ${command.type} -> ${command.playerId}`)
 
@@ -68,11 +79,13 @@
                 }
             })
 
+            //addFruit
             socket.on('add-fruit', (command) => {
                 console.log(`Receiving ${command.type} -> ${command.fruitId}`)
                 game.addFruit(command)
             })
 
+            //removeFruit
             socket.on('remove-fruit', (command) => {
                 console.log(`Receiving ${command.type} -> ${command.fruitId}`)
                 game.removeFruit(command)
