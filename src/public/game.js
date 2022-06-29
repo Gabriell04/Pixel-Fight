@@ -157,4 +157,4 @@ export default function createGame() {
         subscribe,
         start
     }
-}
+} 
