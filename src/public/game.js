@@ -11,7 +11,7 @@ export default function createGame() {
     const observers = []
 
     function start() {
-        const frequency = 2000 //fruit time
+        const frequency = 5000 //fruitTime
 
         setInterval(addFruit, frequency)
     }
@@ -30,6 +30,7 @@ export default function createGame() {
         Object.assign(state, newState)
     }
 
+    //addPlayer
     function addPlayer(command) {
         const playerId = command.playerId
         const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random() * state.screen.width)
@@ -48,6 +49,7 @@ export default function createGame() {
         })
     }
 
+    //removePlayer
     function removePlayer(command) {
         const playerId = command.playerId
 
@@ -59,6 +61,7 @@ export default function createGame() {
         })
     }
 
+    //addFruit
     function addFruit(command) {
         const fruitId = command ? command.fruitId : Math.floor(Math.random() * 10000000)
         const fruitX = command ? command.fruitX : Math.floor(Math.random() * state.screen.width)
@@ -77,6 +80,7 @@ export default function createGame() {
         })
     }
 
+    //removeFruit
     function removeFruit(command) {
         const fruitId = command.fruitId
 
@@ -88,6 +92,7 @@ export default function createGame() {
         })
     }
 
+    //movePlayer
     function movePlayer(command) {
         notifyAll(command)
 
@@ -126,6 +131,7 @@ export default function createGame() {
 
     }
 
+    //FruitCollision
     function checkForFruitCollision(playerId) {
         const player = state.players[playerId]
 
