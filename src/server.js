@@ -16,7 +16,7 @@ game.subscribe((command) => {
     console.log(`> Emitting ${command.type}`)
     sockets.emit(command.type, command)
 })
-
+// Player connected
 sockets.on('connection', (socket) => {
     const playerId = socket.id
     console.log(`> Player connected: ${playerId}`)
@@ -24,12 +24,12 @@ sockets.on('connection', (socket) => {
     game.addPlayer({ playerId: playerId })
 
     socket.emit('setup', game.state)
-
+    // Player disconnected
     socket.on('disconnect', () => {
         game.removePlayer({ playerId: playerId })
         console.log(`> Player disconnected: ${playerId}`)
     })
-
+    // Player move
     socket.on('move-player', (command) => {
         command.playerId = playerId
         command.type = 'move-player'
@@ -41,6 +41,3 @@ sockets.on('connection', (socket) => {
 server.listen(3000, () => {
     console.log(`> Server listening on port: 3000`)
 })
-
-// node server.js
-// ngrok http 3000
